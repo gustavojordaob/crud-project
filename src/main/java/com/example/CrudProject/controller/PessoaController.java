@@ -37,5 +37,4 @@ public class PessoaController {
         Context context = new Context();context.setVariable("date", new Date(System.currentTimeMillis()));
         return templateEngine.process("index.html", context);
     }
-
 }

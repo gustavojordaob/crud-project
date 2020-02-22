@@ -9,6 +9,10 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <script src="jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -24,10 +28,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Início</a></li>
-                <li><a href="#">Opções</a></li>
-                <li><a href="#">Perfil</a></li>
-                <li><a href="#">Ajuda</a></li>
+                <li><a href="/index/product">Cadastrar</a></li>
+                <li><a href="#">Opção 1</a></li>
+                <li><a href="#">Opção 2</a></li>
+                <li><a href="#">Opção 3</a></li>
             </ul>
         </div>
     </div>
@@ -35,22 +39,22 @@
 <br>
 <div id="main" class="container-fluid">
     <h3 class="page-header">Adicionar Item</h3>
-    <form action="index.html">
+    <form id="formProduct" action="/insert/product" onsubmit="sendData()" method="post">
         <!-- area de campos do form -->
         <div class="row">
             <div class="form-group col-md-4">
-                <label for="campo1">Campo Um</label>
-                <input type="text" class="form-control" id="campo1">
+                <label for="product">Produto</label>
+                <input type="text" class="form-control" id="product">
             </div>
 
             <div class="form-group col-md-4">
-                <label for="campo2">Campo Dois</label>
-                <input type="text" class="form-control" id="campo2">
+                <label for="value">Valor</label>
+                <input type="text" class="form-control" id="value">
             </div>
 
             <div class="form-group col-md-4">
-                <label for="campo3">Campo Três</label>
-                <input type="text" class="form-control" id="campo3">
+                <label for="quantity">Quantidade</label>
+                <input type="text" class="form-control" id="quantity">
             </div>
         </div>
         <hr />
@@ -64,5 +68,21 @@
 </div>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script>
+
+    function sendData(){
+
+    var frm = $('#formProduct');
+
+    var Form = this;
+    var data = {};
+    console.log(data,frm,$(":input").serializeArray());
+    alert(this);
+    }
+    pegando valores dos input
+    $('#formProduct').find('input[name="FirstName"]').val();
+    $('#formProduct').find('input').val();
+
+</script>
 </body>
 </html>

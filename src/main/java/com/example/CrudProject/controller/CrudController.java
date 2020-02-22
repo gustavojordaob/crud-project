@@ -10,31 +10,31 @@ import org.thymeleaf.context.Context;
 import java.util.Date;
 
 @RestController
-public class PessoaController {
+public class CrudController {
 
 
     @Autowired
     private ITemplateEngine templateEngine;
 
-    public PessoaController(ITemplateEngine templateEngine) {
+    public CrudController(ITemplateEngine templateEngine) {
         this.templateEngine = templateEngine;
     }
 
     @GetMapping(value="/")
     public String index(){
         Context context = new Context();context.setVariable("date", new Date(System.currentTimeMillis()));
-        return templateEngine.process("index.html", context);
+        return templateEngine.process("template.html", context);
     }
 
     @PostMapping(value="/login")
     public String registerUsers(){
         Context context = new Context();context.setVariable("date", new Date(System.currentTimeMillis()));
-        return templateEngine.process("index.html", context);
+        return templateEngine.process("template.html", context);
     }
 
     @PostMapping(value="/registerusers")
     public String log(){
         Context context = new Context();context.setVariable("date", new Date(System.currentTimeMillis()));
-        return templateEngine.process("index.html", context);
+        return templateEngine.process("template.html", context);
     }
 }

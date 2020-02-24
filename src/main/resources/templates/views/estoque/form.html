@@ -39,22 +39,22 @@
 <br>
 <div id="main" class="container-fluid">
     <h3 class="page-header">Adicionar Item</h3>
-    <form id="formProduct" action="/insert/product" onsubmit="sendData()" method="post">
+    <form name="product" id="product" action="/insert/product" method="post">
         <!-- area de campos do form -->
         <div class="row">
             <div class="form-group col-md-4">
                 <label for="product">Produto</label>
-                <input type="text" class="form-control" id="product">
+                <input type="text" class="form-control" name="name" id="name">
             </div>
 
             <div class="form-group col-md-4">
                 <label for="value">Valor</label>
-                <input type="text" class="form-control" id="value">
+                <input type="text" class="form-control" name="value" id="value">
             </div>
 
             <div class="form-group col-md-4">
                 <label for="quantity">Quantidade</label>
-                <input type="text" class="form-control" id="quantity">
+                <input type="text" class="form-control" name="quantity" id="quantity">
             </div>
         </div>
         <hr />
@@ -69,19 +69,6 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script>
-
-    function sendData(){
-
-    var frm = $('#formProduct');
-
-    var Form = this;
-    var data = {};
-    console.log(data,frm,$(":input").serializeArray());
-    alert(this);
-    }
-    pegando valores dos input
-    $('#formProduct').find('input[name="FirstName"]').val();
-    $('#formProduct').find('input').val();
 
 </script>
 </body>

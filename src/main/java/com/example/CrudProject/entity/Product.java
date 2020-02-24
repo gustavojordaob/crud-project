@@ -1,11 +1,9 @@
-package com.example.CrudProject.Entity;
-
+package com.example.CrudProject.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.*;
-
 @Data
 @Entity
 @Table(name="product")
@@ -20,6 +18,6 @@ public class Product {
     @JsonProperty("value")
     private String value;
     @JsonProperty("quantity")
-    private String quantity;
+    private Integer quantity;
 
 }

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,93 +32,38 @@
         </div>
     </div>
 </div>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Projeto Crud</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="/index/product">Cadastrar</a></li>
-                <li><a href="#">Opção 1</a></li>
-                <li><a href="#">Opção 2</a></li>
-                <li><a href="#">Opção 3</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<div th:insert="~{template :: footer}"></div>
 <br>
 <div id="main" class="container-fluid">
+
     <h3 class="page-header">Visualizar Item #1</h3>
 
     <div class="row">
         <div class="col-md-4">
-            <p><strong>Campo Um</strong></p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
-        </div>
-
-        <div class="col-md-4">
-            <p><strong>Campo Dois</strong></p>
-            <p>Lorem ipsum dolor</p>
-        </div>
-
-        <div class="col-md-4">
-            <p><strong>Campo Três</strong></p>
-            <p>123.456.789-0</p>
-        </div>
-
-        <div class="col-md-4">
-            <p><strong>Campo Quatro</strong></p>
-            <p>In vel sollicitudin leo, id fermentum augue.</p>
-        </div>
-
-        <div class="col-md-4">
-            <p><strong>Campo Cinco</strong></p>
-            <p>(00) 234-5678</p>
-        </div>
-
-        <div class="col-md-4">
-            <p><strong>Campo Seis</strong></p>
-            <p>Nullam ultrices elit ante.</p>
-        </div>
-
-        <div class="col-md-4">
-            <p><strong>Campo Sete</strong></p>
-            <p>Integer finibus in ligula vitae aliquet.</p>
-        </div>
-
-        <div class="col-md-4">
-            <p><strong>Campo Oito</strong></p>
-            <p>Jes</p>
-        </div>
-
-        <div class="col-md-4">
-            <p><strong>Campo Nove</strong></p>
-            <p>Lundo, Merkredo, Vendredo</p>
-        </div>
-
-        <div class="col-md-8">
-            <p><strong>Campo Dez</strong></p>
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                In bibendum nunc urna, at vestibulum neque pellentesque eget.
-                Maecenas lacinia velit ante, vitae fermentum ex interdum et.
-                In vel sollicitudin leo, id fermentum augue. </p>
+            <p><strong>Produto</strong></p>
+            <p th:text="${products.name}"></p>
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-4">
+            <p><strong>Valor</strong></p>
+            <p th:text="${products.value}">Valor</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <p><strong>Quantidade</strong></p>
+            <p th:text="${products.quantity}"></p>
+        </div>
+    </div>
     <hr />
     <div id="actions" class="row">
         <div class="col-md-12">
-            <a href="edit.html" class="btn btn-success">Editar</a>
-            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#delete-modal">Excluir</a>
-            <a href="index.html" class="btn btn-primary">Fechar</a>
+            <a href="/product/edit" class="btn btn-success">Editar</a>
+            <a href="/product/delete" class="btn btn-danger" data-toggle="modal" data-target="/product/delete">Excluir</a>
+            <a href="/index/product" class="btn btn-primary">Fechar</a>
         </div>
     </div>
 

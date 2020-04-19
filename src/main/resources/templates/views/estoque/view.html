@@ -60,11 +60,10 @@
     </div>
     <hr />
     <div id="actions" class="row">
+
         <div class="col-md-12">
             <a href="/product/edit" class="btn btn-success">Editar</a>
-            <a href="/product/delete" class="btn btn-danger" data-toggle="modal" data-target="/product/delete">Excluir</a>
-            <a href="/index/product" class="btn btn-primary">Fechar</a>
-        </div>
+            <a class="btn btn-danger"  th:href="@{'product/delete/' + ${products.id}}" data-toggle="modal" data-target="#delete-modal">Excluir</a>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

@@ -68,9 +68,10 @@ public class ProductController {
         return mav;
     }
 
-    @GetMapping(value="/product/delete")
-    public String deleteAction(){
-        Context context = new Context();context.setVariable("date", new Date(System.currentTimeMillis()));
-        return "ainda nao fiz o delete";
+    @GetMapping(value="/index/product/delete/{id}")
+    public String deleteAction(@PathVariable(value = "id") Long id){
+        Optional<Product> product = productRepository.findById(id);
+        productRepository.delete(product.get());
+        return "redirect:/index/product";
     }
 }

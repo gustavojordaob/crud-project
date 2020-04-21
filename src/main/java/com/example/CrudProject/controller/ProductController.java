@@ -2,31 +2,39 @@ package com.example.CrudProject.controller;
 
 import com.example.CrudProject.entity.Product;
 import com.example.CrudProject.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.thymeleaf.ITemplateEngine;
-import org.thymeleaf.context.Context;
 
+import javax.servlet.ServletRequest;
 import java.util.Date;
 import java.util.Optional;
 
 @Controller
 public class ProductController {
 
-    @Autowired
-    private ITemplateEngine templateEngine;
-
     private ProductRepository productRepository;
 
-    public ProductController(ITemplateEngine templateEngine, ProductRepository productRepository) {
-        this.templateEngine = templateEngine;
+    public ProductController(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
     @RequestMapping(value="/index/product")
-    public ModelAndView indexAction(){
+    public ModelAndView indexAction(ServletRequest request){
+
+        if(request.getParameter("search") != null){
+            Long id = Long.valueOf(request.getParameter("search"));
+            System.out.println(id);
+
+            var mav = new ModelAndView();
+            mav.addObject("date", new Date(System.currentTimeMillis()));
+            mav.addObject("products", productRepository.findById(id).get());
+            mav.setViewName("views/estoque/index.html");
+            return mav;
+        }
+
         var mav = new ModelAndView();
         mav.addObject("date", new Date(System.currentTimeMillis()));
         mav.addObject("products", productRepository.findAll());
@@ -41,14 +49,14 @@ public class ProductController {
         return mav;
     }
 
-    @PostMapping(value="/insert/product")
+    @RequestMapping(value="/insert/product")
     public String insertAction(Product product){
         productRepository.save(product);
         return "redirect:/index/product";
 
     }
 
-    @GetMapping(value="/index/product/detail/{id}")
+    @RequestMapping(value="/product/detail/{id}")
     public ModelAndView detailAction(@PathVariable(value = "id") Long id){
         Optional<Product> product =  productRepository.findById(id);;
         var mav = new ModelAndView();
@@ -58,7 +66,7 @@ public class ProductController {
         return mav;
     }
 
-    @GetMapping(value="/index/product/edit/{id}")
+    @RequestMapping(value="/product/edit/{id}")
     public ModelAndView editAction(@PathVariable(value = "id") Long id){
         Optional<Product> product =  productRepository.findById(id);
         var mav = new ModelAndView();
@@ -68,10 +76,19 @@ public class ProductController {
         return mav;
     }
 
-    @GetMapping(value="/index/product/delete/{id}")
+    @GetMapping(value="/product/delete/{id}")
     public String deleteAction(@PathVariable(value = "id") Long id){
         Optional<Product> product = productRepository.findById(id);
         productRepository.delete(product.get());
         return "redirect:/index/product";
+    }
+
+    @RequestMapping(value="/index/filter/{value}")
+    public ModelAndView filter(@PathVariable(value = "value") String value){
+        var mav = new ModelAndView();
+        mav.addObject("date", new Date(System.currentTimeMillis()));
+        mav.addObject("products", productRepository.findAll());
+        mav.setViewName("views/estoque/index.html");
+        return mav;
     }
 }

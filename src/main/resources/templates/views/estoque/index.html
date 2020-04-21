@@ -22,19 +22,21 @@
         <div class="col-sm-3">
             <h2>Itens</h2>
         </div>
-        <div class="col-sm-6">
-            <div class="input-group h2">
-                <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Itens">
-                <span class="input-group-btn">
-					<button class="btn btn-primary" type="submit">
-						<span class="glyphicon glyphicon-search"></span>
-					</button>
-				</span>
-            </div>
+        <form method="post">
+            <div class="col-sm-6">
+                <div class="input-group h2">
+                    <input name="search" class="form-control" id="search" type="text" placeholder="Pesquisar Itens">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
 
-        </div>
+            </div>
+        </form>
         <div class="col-sm-3">
-            <a href="/new/product" class="btn btn-primary pull-right h2">Novo Item</a>
+            <a th:href="@{/new/product}" class="btn btn-primary pull-right h2">Novo Item</a>
         </div>
     </div> <!-- /#top -->
 
@@ -61,9 +63,9 @@
                     <td th:text="${products.value}"></td>
                     <td th:text="${products.quantity}"></td>
                     <td class="actions">
-                        <a th:href="@{'product/detail/' + ${products.id}}" class="btn btn-success btn-xs" >Visualizar</a>
-                        <a class="btn btn-warning btn-xs" th:href="@{'product/edit/' + ${products.id}}">Editar</a>
-                        <a class="btn btn-danger btn-xs"  th:href="@{'product/delete/' + ${products.id}}" data-toggle="modal" data-target="#delete-modal">Excluir</a>
+                        <a th:href="@{/product/detail/{id}(id=${products.id})}" class="btn btn-success btn-xs" >Visualizar</a>
+                        <a class="btn btn-warning btn-xs" th:href="@{/product/edit/{id}(id=${products.id})}">Editar</a>
+                        <a class="btn btn-danger btn-xs"  th:href="@{/product/delete/{id}(id=${products.id})}" data-toggle="modal" data-target="#delete-modal">Excluir</a>
                     </td>
                 </tr>
                 </th:block>

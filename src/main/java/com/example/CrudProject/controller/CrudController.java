@@ -1,40 +1,40 @@
 package com.example.CrudProject.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.thymeleaf.ITemplateEngine;
-import org.thymeleaf.context.Context;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
 
 @RestController
 public class CrudController {
 
+    public CrudController(){
 
-    @Autowired
-    private ITemplateEngine templateEngine;
-
-    public CrudController(ITemplateEngine templateEngine) {
-        this.templateEngine = templateEngine;
     }
 
     @GetMapping(value="/")
-    public String index(){
-        Context context = new Context();context.setVariable("date", new Date(System.currentTimeMillis()));
-        return templateEngine.process("template.html", context);
+    public ModelAndView index(){
+        var mav = new ModelAndView();
+        mav.addObject("date", new Date(System.currentTimeMillis()));
+        mav.setViewName("template.html");
+        return mav;
     }
 
     @PostMapping(value="/login")
-    public String registerUsers(){
-        Context context = new Context();context.setVariable("date", new Date(System.currentTimeMillis()));
-        return templateEngine.process("template.html", context);
+    public ModelAndView registerUsers(){
+        var mav = new ModelAndView();
+        mav.addObject("date", new Date(System.currentTimeMillis()));
+        mav.setViewName("template.html");
+        return mav;
     }
 
     @PostMapping(value="/registerusers")
-    public String log(){
-        Context context = new Context();context.setVariable("date", new Date(System.currentTimeMillis()));
-        return templateEngine.process("template.html", context);
+    public ModelAndView log(){
+        var mav = new ModelAndView();
+        mav.addObject("date", new Date(System.currentTimeMillis()));
+        mav.setViewName("template.html");
+        return mav;
     }
 }
